@@ -1,19 +1,19 @@
 <?php
 
-namespace Omnifilm\Omdb\Tests;
+namespace Omnishow\Omdb\Tests;
 
-use Omnifilm\Exception\NotSupportedException;
-use Omnifilm\Exception\ProviderException;
-use Omnifilm\Model\Credit;
-use Omnifilm\Model\Query;
-use Omnifilm\Model\Rating;
-use Omnifilm\Model\Role;
-use Omnifilm\Model\Work;
-use Omnifilm\Model\WorkRef;
-use Omnifilm\Model\WorkType;
-use Omnifilm\Omdb\OmdbFactory;
-use Omnifilm\Omdb\OmdbProvider;
-use Omnifilm\Testing\RecordedHttpClient;
+use Omnishow\Exception\NotSupportedException;
+use Omnishow\Exception\ProviderException;
+use Omnishow\Model\Credit;
+use Omnishow\Model\Query;
+use Omnishow\Model\Rating;
+use Omnishow\Model\Role;
+use Omnishow\Model\Work;
+use Omnishow\Model\WorkRef;
+use Omnishow\Model\WorkType;
+use Omnishow\Omdb\OmdbFactory;
+use Omnishow\Omdb\OmdbProvider;
+use Omnishow\Testing\RecordedHttpClient;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -69,7 +69,7 @@ final class OmdbProviderTest extends TestCase
     {
         $http = RecordedHttpClient::routes(['~~' => [200, '{"Response":"False","Error":"Too many results."}']]);
 
-        self::assertSame([], self::provider($http)->search(new \Omnifilm\Model\Query('a')));
+        self::assertSame([], self::provider($http)->search(new \Omnishow\Model\Query('a')));
     }
 
     public function testNotFoundIsNullAndAWrongKeyAnError(): void

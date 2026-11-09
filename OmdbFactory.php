@@ -1,11 +1,11 @@
 <?php
 
-namespace Omnifilm\Omdb;
+namespace Omnishow\Omdb;
 
-use Omnifilm\Config;
-use Omnifilm\Http\JsonClient;
-use Omnifilm\ProviderFactory;
-use Omnifilm\ProviderInterface;
+use Omnishow\Config;
+use Omnishow\Http\JsonClient;
+use Omnishow\ProviderFactory;
+use Omnishow\ProviderInterface;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -19,9 +19,9 @@ final class OmdbFactory extends ProviderFactory
     protected function populate(Config $c): void
     {
         $c->defaults([
-            'omnifilm.factory_name' => 'omdb',
-            'omnifilm.factory_title' => 'OMDb',
-            'omnifilm.required_options' => ['api_key'],
+            'omnishow.factory_name' => 'omdb',
+            'omnishow.factory_title' => 'OMDb',
+            'omnishow.required_options' => ['api_key'],
             'api' => 'https://www.omdbapi.com/',
         ]);
     }

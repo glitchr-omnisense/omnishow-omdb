@@ -1,6 +1,6 @@
-# omnifilm/omdb
+# omnishow/omdb
 
-OMDb for [omnisense/omnifilm](https://github.com/glitchr-omnisense/omnifilm): films, series and
+OMDb for [omnisense/omnishow](https://github.com/glitchr-omnisense/omnishow): films, series and
 episodes by their IMDb number, with the IMDb, Rotten Tomatoes and Metacritic scores OMDb gathers; a
 search by title; a season's episodes. Every call is `GET https://www.omdbapi.com/` with the key and
 `r=json` in the query string:
@@ -16,10 +16,10 @@ OMDb has no sandbox. No PHP client running on Symfony's HTTP client contracts wa
 ## Installation
 
 ```sh
-composer require omnifilm/omdb
+composer require omnishow/omdb
 ```
 
-Requires PHP 8.2, `omnisense/omnifilm` (1.x) and `symfony/http-client` (6.4, 7 or 8).
+Requires PHP 8.2, `omnisense/omnishow` (1.x) and `symfony/http-client` (6.4, 7 or 8).
 
 ## Credentials
 
@@ -85,8 +85,8 @@ another register than IMDb is a `NotSupportedException`.
 
 require __DIR__.'/vendor/autoload.php';
 
-use Omnifilm\Model\WorkRef;
-use Omnifilm\Omdb\OmdbFactory;
+use Omnishow\Model\WorkRef;
+use Omnishow\Omdb\OmdbFactory;
 use Symfony\Component\HttpClient\HttpClient;
 
 $omdb = (new OmdbFactory(HttpClient::create()))->create(['api_key' => getenv('OMDB_KEY')]);
@@ -130,11 +130,11 @@ In Symfony:
 
 ```yaml
 services:
-    Omnifilm\Omdb\OmdbFactory:
+    Omnishow\Omdb\OmdbFactory:
         arguments: ['@http_client']
-    Omnifilm\Registry:
+    Omnishow\Registry:
         arguments:
-            $factories: ['@Omnifilm\Omdb\OmdbFactory']
+            $factories: ['@Omnishow\Omdb\OmdbFactory']
             $config:
                 scores: { factory: omdb, options: { api_key: '%env(OMDB_KEY)%' } }
 ```
