@@ -172,6 +172,18 @@ class with the package's requirements alone.
 
 Not verified: no OMDb key was used; nothing was called on omdbapi.com.
 
+## Usage policy
+
+The package declares OMDb's usage policy as data, in [policy.json](../policy.json)
+(omnisense/contracts' schema, read at its sources on 2026-11-10): rate limits 1,000 calls a day per
+key (the free key's limit; the Patreon tiers' are not published); commercial use, storage and
+redistribution forbidden (the site's legal page), the data under CC BY-NC 4.0 and credited, caching
+not addressed. Through omnishow's registry every call is held to it: `lookup`'s 1,001st `work` of a
+day is refused before it reaches OMDb, a 429 and its `Retry-After` hold every next call until the
+wait is over (`UsageLimitReachedException`), and a site may tighten the policy in its configuration
+(`'policy' => [...]`), never loosen it. What the terms do not say is declared unknown; the sources
+and the details are in the file's `provenance`.
+
 ## Responsibility
 
 An independent, unofficial client, affiliated with OMDb in no way. OMDb's content is licensed

@@ -2,6 +2,8 @@
 
 namespace Omnishow\Omdb;
 
+use Omnisense\Contracts\Policy\DeclaresUsagePolicyInterface;
+use Omnisense\Contracts\Policy\UsagePolicy;
 use Omnishow\Capabilities;
 use Omnishow\EpisodesInterface;
 use Omnishow\Exception\NotSupportedException;
@@ -30,8 +32,13 @@ use Omnishow\SearchInterface;
  * "Response": "False" with a 200 as not found - or as an error when it says
  * the key is wrong or the daily limit reached.
  */
-final class OmdbProvider implements ProviderInterface, SearchInterface, LookupInterface, EpisodesInterface
+final class OmdbProvider implements ProviderInterface, SearchInterface, LookupInterface, EpisodesInterface, DeclaresUsagePolicyInterface
 {
+    /** OMDb's usage policy, as its terms read on the day it says (provenance.verifiedAt). */
+    public const POLICY = __DIR__.'/policy.json';
+
+    private static ?UsagePolicy $policy = null;
+
     private const TYPES = ['movie' => WorkType::Movie, 'series' => WorkType::Series, 'episode' => WorkType::Episode];
     private const SCALES = ['Internet Movie Database' => 'imdb', 'Rotten Tomatoes' => 'rottentomatoes', 'Metacritic' => 'metacritic'];
 
@@ -49,6 +56,11 @@ final class OmdbProvider implements ProviderInterface, SearchInterface, LookupIn
         return 'OMDb';
     }
 
+    public function usagePolicy(): UsagePolicy
+    {
+        return self::$policy ??= UsagePolicy::fromFile(self::POLICY);
+    }
+
     public function capabilities(): Capabilities
     {
         return new Capabilities(
@@ -61,6 +73,7 @@ final class OmdbProvider implements ProviderInterface, SearchInterface, LookupIn
             credits: true,
             attribution: 'Data from OMDb (omdbapi.com), CC BY-NC 4.0',
             terms: ['https://www.omdbapi.com/legal.htm', 'https://creativecommons.org/licenses/by-nc/4.0/'],
+            policy: $this->usagePolicy(),
         );
     }
 

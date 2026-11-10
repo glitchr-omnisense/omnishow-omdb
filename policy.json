@@ -1,0 +1,47 @@
+{
+    "$schema": "https://github.com/glitchr-omnisense/contracts/blob/1.x/resources/usage-policy.schema.json",
+    "provider": "omdb",
+    "rateLimits": [
+        {
+            "max": 1000,
+            "window": "day",
+            "scope": "key",
+            "operations": [],
+            "note": "The free key's daily limit (\"FREE! (1,000 daily limit)\", omdbapi.com/apikey.aspx); the Patreon tiers' limits are not stated."
+        }
+    ],
+    "rights": {
+        "commercial": "forbidden",
+        "openSourceRequired": null,
+        "caching": {
+            "permission": "unknown",
+            "maxTtl": null
+        },
+        "storage": "forbidden",
+        "redistribution": "forbidden",
+        "attribution": {
+            "required": true,
+            "text": "Data from OMDb (omdbapi.com), CC BY-NC 4.0",
+            "url": "https://www.omdbapi.com/",
+            "where": [
+                "display"
+            ]
+        },
+        "licence": "CC-BY-NC-4.0"
+    },
+    "requirements": {
+        "key": true,
+        "userAgent": {
+            "required": false,
+            "pattern": null
+        }
+    },
+    "provenance": {
+        "terms": "https://www.omdbapi.com/legal.htm",
+        "policy": "https://www.omdbapi.com/apikey.aspx",
+        "verifiedAt": "2026-11-10",
+        "declaredBy": "maintainer",
+        "contact": "https://github.com/omdbapi/OMDb-API/issues",
+        "notes": "Content licensed under CC BY-NC 4.0 (credit asked by the licence; OMDb gives no wording). The terms forbid use \"in connection with any commercial endeavors\" (10) and building a business on the content (4.2.5), copying, archiving or distributing it (4.2.3) and building an index of it (4.2.4): storage and redistribution forbidden. Caching is not addressed. The poster API (img.omdbapi.com) is for patrons only."
+    }
+}

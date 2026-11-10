@@ -28,6 +28,6 @@ final class OmdbFactory extends ProviderFactory
 
     protected function build(Config $c): ProviderInterface
     {
-        return new OmdbProvider(new JsonClient($this->http ?? HttpClient::create(['timeout' => 20]), 'OMDb', ['Accept' => 'application/json']), (string) $c->string('api_key'), (string) $c->string('api'));
+        return new OmdbProvider(new JsonClient($this->http ?? HttpClient::create(['timeout' => 20]), 'OMDb', ['Accept' => 'application/json'], $c->backoff()), (string) $c->string('api_key'), (string) $c->string('api'));
     }
 }
