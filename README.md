@@ -16,6 +16,17 @@ Options: `api_key` (required), `api` ("https://www.omdbapi.com/").
 Written on Symfony's HTTP client contracts, like the family: an API of a few query parameters,
 no client known that runs on them (and takes the application's client).
 
+## Install
+
+```sh
+composer require omnishow/omdb
+```
+
+It requires `omnisense/omnishow` `^1.0`, installed with it. A real call needs: **an OMDb API key**.
+With no account, its tests run on recorded answers (a `MockHttpClient`), and
+[omnisense/omnishow](https://github.com/glitchr-omnisense/omnishow#install-and-a-first-call)'s
+README has a first call that runs without one.
+
 ## OMDb's terms, as read on 2026-10-24
 
 - Its content is licensed [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
